@@ -85,6 +85,24 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Top Languages in Software Development: What Is Hot in 2020',
+    date: 'Jan 15th, 2020',
+    firstParagraph: `JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. `,
+
+    secondParagraph: `JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. `,
+
+    thirdParagraph: `JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. JavaScript javascript js. And maybe some Python.`
+  },
+  {
+    title: 'Startups Are Looking For These Traits - #4 May Surprise You!',
+    date: 'Jan 16th, 2020',
+    firstParagraph: `Something that makes sense. Something that is a little weird. Ok you could see this one coming. And finally, something that surprises you. You are now surprised.`,
+
+    secondParagraph: `Something that makes sense. Something that is a little weird. Ok you could see this one coming. And finally, something that surprises you. You are now surprised. Something that makes sense. Something that is a little weird. Ok you could see this one coming. And finally, something that surprises you. You are now surprised. `,
+
+    thirdParagraph: `Something that makes sense. Something that is a little weird. Ok you could see this one coming. And finally, something that surprises you. You are now surprised. Something that makes sense. Something that is a little weird. Ok you could see this one coming. And finally, something that surprises you. You are now surprised. Something that makes sense. Something that is a little weird. Ok you could see this one coming. And finally, something that surprises you. You are now surprised.`
   }
 ];
 
@@ -112,3 +130,48 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function articleCreator(obj){
+  // title
+  const title = document.createElement('h2');
+  title.textContent = obj.title;
+  // paragraphs
+  const pDate = document.createElement('p');
+  pDate.textContent = obj.date;
+  pDate.classList.add('date');
+  const p1 = document.createElement('p');
+  p1.textContent = obj.firstParagraph;
+  const p2 = document.createElement('p');
+  p2.textContent = obj.secondParagraph;
+  const p3 = document.createElement('p');
+  p3.textContent = obj.thirdParagraph;
+  // span
+  const span = document.createElement('span');
+  span.classList.add('expandButton');
+  // event listener
+  span.addEventListener('click', () => {
+    articleDiv.classList.toggle('article-open');
+  });
+  // the article div
+  const articleDiv = document.createElement('div');
+  articleDiv.classList.add('article');
+  // assemble the div
+  articleDiv.appendChild(title);
+  articleDiv.appendChild(pDate);
+  articleDiv.appendChild(p1);
+  articleDiv.appendChild(p2);
+  articleDiv.appendChild(p3);
+  articleDiv.appendChild(span);
+  // return the assembled article div
+  return articleDiv;
+}
+
+const processedData = data.map(obj => {
+  return articleCreator(obj);
+});
+
+const articles = document.querySelector('.articles');
+processedData.forEach(div => {
+  articles.appendChild(div);
+});
+
