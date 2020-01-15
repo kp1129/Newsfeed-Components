@@ -148,6 +148,7 @@ function articleCreator(obj){
   // span
   const span = document.createElement('span');
   span.classList.add('expandButton');
+  span.textContent = 'expand';
   // event listener
   span.addEventListener('click', () => {
     articleDiv.classList.toggle('article-open');
